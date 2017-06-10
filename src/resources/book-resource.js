@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const HTTP = axios.create({
   baseURL: `https://bookstore-api-harrybournis.herokuapp.com/api`
+  // baseURL: `http://localhost:8080/api`
 })
 
 export default class BookResource {
