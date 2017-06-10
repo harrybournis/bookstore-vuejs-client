@@ -12,6 +12,7 @@
     "test": "npm run unit"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "bulma": "^0.4.2",
     "coffee-script": "^1.12.6",
     "vue": "^2.3.3",

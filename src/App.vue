@@ -21,7 +21,7 @@
     name: 'app',
     data () {
       return {
-        title: "Skata"
+        title: ""
       }
     }
   }
