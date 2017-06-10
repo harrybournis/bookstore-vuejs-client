@@ -6,7 +6,7 @@ header
       a.brand-logo(href='#') Bookstore
       ul#nav-mobile.right.hide-on-med-and-down
         li
-          a(href='#create-modal') Create a Book
+          router-link(":to"="createbookform") Create a Book
 
 </template>
 

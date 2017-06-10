@@ -5,8 +5,8 @@
       .nav-wrapper
         a.brand-logo(href='#') Bookstore
         ul#nav-mobile.right.hide-on-med-and-down
-          li
-            a(href='#create-modal') Create a Book
+          li("v-show"="$route.path !== '/create-book'")
+            router-link(":to"="{ path: '/create-book' }") Create a Book
   main
     router-view
   footer.page-footer

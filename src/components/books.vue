@@ -16,6 +16,8 @@
             | Subject: {{ book.subject }}
             br
             | Publisher: {{ book.publisher }}
+            br
+            | Language: {{ book.language }}
           a.secondary-content(":href"="bookLink(book.id)",title="Edit Book")
             i.material-icons create
           a.secondary-content.delete-btn("@click"="deleteBook(book)",title="Delete Book")
