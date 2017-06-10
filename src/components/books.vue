@@ -7,7 +7,7 @@
       ul.collection("v-if"="books")
         li.collection-item.avatar("v-for"="book in books")
           i.material-icons.circle(":class"="redOrGreen(book)") {{ book.isInstock ? 'assignment_turned_in' : 'assignment_late' }}
-          span.title.booktitle {{ book.title }}
+          span.title.booktitle {{ book.title }} , id: {{ book.id }}
           p
             | by: {{ book.author }}
             br
@@ -16,7 +16,8 @@
             | Subject: {{ book.subject }}
             br
             | Publisher: {{ book.publisher }}
-          a.secondary-content(href='#!')
+          //- a.secondary-content(:href="'/books/' + book.id")
+          a.secondary-content(":href"="bookLink(book.id)")
             i.material-icons create
       h1("v-else") No Books :(
 </template>
@@ -34,26 +35,20 @@
 						red: !book.isInstock,
 						green: book.isInstock
 					}
+				},
+				bookLink (id) {
+					return "/#/books/" + id;
 				}
 			}
 		},
-	    methods:{
-	        // getBooks: function() {
-
-	        // }
-	    },
-	    created () {
-	        // this.books = BookResource.getBooks()
-	        BookResource.getBooks().then(response => {
-      			this.books = response.data
-    		})
-    		.catch(e => {
-      			console.log(e)
-      			// this.books = e;
+    created () {
+      BookResource.getBooks().then(response => {
+  			this.books = response.data
+  		})
+  		.catch(e => {
+  			console.log(e)
 			})
-	        // console.log(BookResource.getBooks())
-	        // console.log("Threse are the books: ", this.books)
-	    }
+    }
 	}
 </script>
 

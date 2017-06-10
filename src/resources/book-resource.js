@@ -10,4 +10,8 @@ export default class BookResource {
     return HTTP.get('books')
   }
 
+  static getBook(id) {
+    return HTTP.get('books/' +  id)
+  }
+
 }
