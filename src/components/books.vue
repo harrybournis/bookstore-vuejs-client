@@ -16,9 +16,10 @@
             | Subject: {{ book.subject }}
             br
             | Publisher: {{ book.publisher }}
-          //- a.secondary-content(:href="'/books/' + book.id")
-          a.secondary-content(":href"="bookLink(book.id)")
+          a.secondary-content(":href"="bookLink(book.id)",title="Edit Book")
             i.material-icons create
+          a.secondary-content.delete-btn("@click"="deleteBook(book)",title="Delete Book")
+            i.material-icons delete
       h1("v-else") No Books :(
 </template>
 
@@ -38,6 +39,20 @@
 				},
 				bookLink (id) {
 					return "/#/books/" + id;
+				},
+				deleteBook (book) {
+					let r = confirm("Warning! Delete the Book " + book.title + " by " + book.author + "?");
+					if (r == true) {
+						BookResource.deleteBook(book.id).then(response => {
+							this.books = this.books.filter(e => {
+  							return e.id !== book.id;
+							});
+						})
+						.catch(e => {
+							console.log(e)
+							alert("Could not delete the book!")
+						})
+					}
 				}
 			}
 		},
@@ -55,5 +70,10 @@
 <style scoped>
 	.collection .collection-item.avatar .title.booktitle {
 		font-size: 1.4rem;
+	}
+
+	.collection .collection-item.avatar .secondary-content.delete-btn {
+		top: 52px;
+		color: #E53935;
 	}
 </style>

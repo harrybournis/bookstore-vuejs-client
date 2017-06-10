@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const HTTP = axios.create({
-  baseURL: `http://localhost:8080`,
+  baseURL: `http://localhost:8080`
 })
 
 export default class BookResource {
@@ -14,4 +14,11 @@ export default class BookResource {
     return HTTP.get('books/' +  id)
   }
 
+  static deleteBook(id) {
+    return HTTP.delete('books/' + id)
+  }
+
+  static updateBook(book) {
+    return HTTP.put('books/' + book.id, book)
+  }
 }
