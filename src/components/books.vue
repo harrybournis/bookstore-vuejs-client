@@ -27,7 +27,10 @@
             i.material-icons create
           a.secondary-content.delete-btn("@click"="deleteBook(book)",title="Delete Book")
             i.material-icons delete
-    //h1("v-else") No Books :(
+    h1("v-else") No Books :(
+    router-link.create-fab.hide-on-large-only.btn-floating.btn-large.waves-effect.waves-light.red(":to"="{ path: '/create-book' }")
+      i.material-icons add
+
 </template>
 
 <script>
@@ -80,6 +83,12 @@
 </script>
 
 <style scoped>
+  .create-fab {
+    position: fixed;
+    bottom: 82px;
+    right: 25px;
+  }
+
 	.collection .collection-item.avatar .title.booktitle {
 		font-size: 1.4rem;
 	}
