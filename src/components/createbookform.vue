@@ -59,7 +59,7 @@
       createBook () {
         BookResource.createBook(this.book).then(response => {
           alert("Book Created!")
-          this.$router.push({ path: '/' })
+          this.$router.push({ name: 'Books' })
         })
         .catch(e => {
           console.log(e)

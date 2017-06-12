@@ -23,7 +23,7 @@
             | Publisher: {{ book.publisher }}
             br
             | Language: {{ book.language }}
-          a.secondary-content(":href"="bookLink(book.id)",title="Edit Book")
+          router-link.secondary-content(":to"="{ name: 'Bookform' , params: { id: book.id }}",title="Edit Book")
             i.material-icons create
           a.secondary-content.delete-btn("@click"="deleteBook(book)",title="Delete Book")
             i.material-icons delete
@@ -61,6 +61,7 @@
 							this.books = this.books.filter(e => {
   							return e.id !== book.id;
 							});
+              alert("Book with id = " + book.id + " was deleted")
 						})
 						.catch(e => {
 							console.log(e)

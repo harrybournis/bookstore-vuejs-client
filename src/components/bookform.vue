@@ -66,13 +66,15 @@
     },
     methods: {
       updateBook () {
+        this.loading = true
         BookResource.updateBook(this.book).then(response => {
           alert("Book updated!")
-          this.$router.push({ path: '/' })
+          this.$router.push({ name: 'Books'})
         })
         .catch(e => {
           console.log(e)
           alert("Could not update the book")
+          this.loading = false
         })
       }
     },
