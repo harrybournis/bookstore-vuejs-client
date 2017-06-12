@@ -5,25 +5,27 @@ const HTTP = axios.create({
   // baseURL: `http://localhost:8080/api`
 })
 
+const RESOURCE_URL = 'books/'
+
 export default class BookResource {
 
   static getBooks() {
-    return HTTP.get('books')
+    return HTTP.get(RESOURCE_URL)
   }
 
   static getBook(id) {
-    return HTTP.get('books/' +  id)
+    return HTTP.get(RESOURCE_URL +  id)
   }
 
   static deleteBook(id) {
-    return HTTP.delete('books/' + id)
+    return HTTP.delete(RESOURCE_URL + id)
   }
 
   static updateBook(book) {
-    return HTTP.put('books/' + book.id, book)
+    return HTTP.put(RESOURCE_URL + book.id, book)
   }
 
   static createBook(book) {
-    return HTTP.post('books', book)
+    return HTTP.post(RESOURCE_URL, book)
   }
 }
