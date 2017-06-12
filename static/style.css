@@ -7,3 +7,12 @@
   main {
     flex: 1 0 auto;
   }
+
+ .spin {
+    animation: spinIt 1.5s infinite linear;
+    font-size: 4rem;
+  }
+  @keyframes spinIt {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(359deg); }
+  }

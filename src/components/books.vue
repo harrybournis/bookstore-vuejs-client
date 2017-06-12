@@ -3,8 +3,13 @@
   .row
     .col.s12
       h2.center-align Books
-    .col.s12
-      ul.collection("v-if"="books")
+
+    .col.s12.center-align("v-if"="loading")
+      i.material-icons.spin refresh
+      p Loading ..
+
+    .col.s12("v-else-if"="loading || books")
+      ul.collection
         li.collection-item.avatar("v-for"="book in books")
           i.material-icons.circle(":class"="redOrGreen(book)") {{ book.isInstock ? 'assignment_turned_in' : 'assignment_late' }}
           span.title.booktitle {{ book.title }} , id: {{ book.id }}
@@ -22,7 +27,7 @@
             i.material-icons create
           a.secondary-content.delete-btn("@click"="deleteBook(book)",title="Delete Book")
             i.material-icons delete
-      h1("v-else") No Books :(
+    //h1("v-else") No Books :(
 </template>
 
 <script>
@@ -33,6 +38,10 @@
 		data () {
 			return {
 				books: null,
+        loading: true,
+			}
+		},
+    methods: {
 				redOrGreen (book) {
 					return {
 						red: !book.isInstock,
@@ -55,15 +64,16 @@
 							alert("Could not delete the book!")
 						})
 					}
-				}
-			}
-		},
+        }
+    },
     created () {
       BookResource.getBooks().then(response => {
   			this.books = response.data
+        this.loading = false
   		})
   		.catch(e => {
   			console.log(e)
+        this.loading = false
 			})
     }
 	}
